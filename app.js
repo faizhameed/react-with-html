@@ -1,41 +1,43 @@
 function Hi() {
-  const [state, setState] = React.useState({
-    name: "",
-  });
-  const inputGreet = React.createRef((e) => {
-    console.log(e);
-  });
-  const greet = () => {
-    console.log("hi", inputGreet.current.value);
-  };
-
-  const selectUpdate = (e) => {
-    setState({ ...state, name: e.target.value });
-  };
   return (
     <div>
-      <p>This is a try</p>
-      <select onChange={selectUpdate}>
-        <option>Faiz</option>
-        <option>Hameed</option>
+      <select>
+        <option selected disabled hidden>
+          Choose here
+        </option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+        <option value="4">Four</option>
+        <option value="5">Five</option>
       </select>
-      <h1>Shown Name:{state.name}</h1>
-      <input ref={inputGreet} type="text" />
-      <button onClick={greet}>greet</button>
-      <Button inputRef={inputGreet} />
     </div>
   );
 }
-function Button({ inputRef }) {
-  const greet = () => {
-    console.log("hi", inputRef.current.value);
-  };
-  return <button onClick={greet}>click from </button>;
+
+function Button() {
+  return <button>click from </button>;
 }
-ReactDOM.render(
-  <div>
-    <h1>Learn React</h1>
-    <Hi />
-  </div>,
-  document.getElementById("root")
-);
+function render(data) {
+  ReactDOM.render(
+    <div>
+      <h1>Learn React</h1>
+      <a href={data.linkAddress} target="_blank">
+        {data.linkText}
+      </a>
+      <Hi />
+    </div>,
+    document.getElementById("root")
+  );
+}
+var data = {
+  linkAddress: "https://www.google.com",
+  linkText: "google",
+  min: -5,
+  max: 5,
+  color: "maroon",
+  "font-weight": "bold",
+  buttonText: "click me",
+};
+
+render(data);
